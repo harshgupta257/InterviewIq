@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>InterviewIQ — Interview practice built from your resume</title>
+    <meta name="description" content="Practise interviews tailored to your resume and the role you want. Eight grounded questions, four transparent scores, and one clear next step for every answer." />
+    <meta name="keywords" content="interview practice, mock interview, interview preparation, resume, job description, interview feedback" />
+    <meta name="theme-color" content="#000000" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="InterviewIQ" />
+    <meta property="og:title" content="InterviewIQ — Interview practice built from your resume" />
+    <meta property="og:description" content="Eight questions grounded in your experience and the role. Four transparent scores per answer. One clear next step." />
+    <meta property="og:locale" content="en_US" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="InterviewIQ — Interview practice built from your resume" />
+    <meta name="twitter:description" content="Eight grounded questions, four transparent scores, one clear next step." />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <script>
+      // Apply the saved theme before first paint to avoid a flash.
+      try {
+        var t = localStorage.getItem("iq_theme") || "system";
+        var dark = t === "dark" || (t === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+        if (dark) document.documentElement.classList.add("dark");
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

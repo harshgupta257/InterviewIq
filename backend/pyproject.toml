@@ -1,0 +1,35 @@
+[project]
+name = "interviewiq-backend"
+version = "1.0.0"
+requires-python = ">=3.12"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+testpaths = ["tests"]
+markers = ["live_ai: calls a real AI provider (requires credentials; skipped by default)"]
+addopts = "-m 'not live_ai'"
+
+[tool.ruff]
+line-length = 110
+target-version = "py312"
+extend-exclude = [".venv"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "S", "BLE", "ASYNC"]
+ignore = ["S101", "S104", "B008", "S105", "S106"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S", "E501"]
+"app/ai/demo_provider.py" = ["E501"]
+"app/services/demo_data.py" = ["E501"]
+"evals/build_dataset.py" = ["E501"]
+
+[tool.mypy]
+python_version = "3.12"
+plugins = ["pydantic.mypy"]
+strict = false
+warn_unused_ignores = true
+disallow_untyped_defs = true
+ignore_missing_imports = true
+exclude = ["tests/", "evals/"]

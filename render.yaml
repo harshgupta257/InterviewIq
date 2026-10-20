@@ -1,0 +1,91 @@
+# Render Blueprint for InterviewIQ: the FastAPI backend and the static React frontend.
+# Dashboard > New > Blueprint > select this repo. Values marked `sync: false` are
+# prompted for on first deploy and are never stored in git.
+services:
+  - type: web
+    name: interviewiq-api
+    runtime: docker
+    rootDir: backend
+    dockerfilePath: ./Dockerfile
+    plan: free
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: LOG_LEVEL
+        value: INFO
+      - key: DB_AUTO_CREATE
+        value: "false"
+      - key: DEMO_MODE
+        value: "false"
+      - key: AI_PROVIDER
+        value: gemini
+      - key: AI_MODEL
+        value: gemini-flash-latest
+      - key: AI_FALLBACK_MODELS
+        sync: false # optional, comma-separated, e.g. the value in your local backend/.env
+      - key: AI_TIMEOUT_SECONDS
+        value: "60"
+      - key: AI_MAX_RETRIES
+        value: "2"
+      - key: RATE_LIMIT_PER_MINUTE
+        value: "10"
+      - key: FRONTEND_ORIGIN
+        sync: false # the static site URL, e.g. https://interviewiq-web.onrender.com
+      - key: DATABASE_URL
+        sync: false # Supabase session-pooler connection string
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_JWT_SECRET
+        sync: false # only for legacy HS256 projects; leave empty with signing keys
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false # leave empty when using Gemini
+      - key: ADZUNA_APP_ID
+        sync: false # leave empty to keep job search disabled
+      - key: ADZUNA_APP_KEY
+        sync: false
+      - key: ADZUNA_COUNTRY
+        value: in
+
+  - type: web
+    name: interviewiq-web
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm ci && npm run build
+    staticPublishPath: ./dist
+    autoDeploy: true
+    # Only PUBLIC values: every VITE_ variable is bundled into the browser JavaScript.
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: VITE_API_BASE_URL
+        sync: false # the API URL, e.g. https://interviewiq-api.onrender.com (no trailing slash)
+      - key: VITE_SUPABASE_URL
+        sync: false
+      - key: VITE_SUPABASE_ANON_KEY
+        sync: false # anon / publishable key only, never the service-role key
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    headers:
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: X-Frame-Options
+        value: DENY
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
+      - path: /*
+        name: Permissions-Policy
+        value: camera=(), microphone=(), geolocation=()
+      - path: /assets/*
+        name: Cache-Control
+        value: public, max-age=31536000, immutable

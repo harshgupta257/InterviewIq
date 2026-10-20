@@ -1,0 +1,156 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Design system variables (Minimalism & Swiss Style)
+ *   --spacing: 2rem   --border-radius: 0px   --shadow: none
+ *   --font-weight: 400-700   --accent-color: taupe #B38B6D (single accent)
+ *
+ * WCAG AAA (7:1) for text:
+ *   #000 on #FFF 21:1 · #000 on beige #F5F1E8 18.4:1
+ *   muted #4A4A4A on #FFF 8.9:1, on beige 7.8:1
+ *   taupe-dark #6B4F3A on #FFF 8.4:1 (accent text); taupe #B38B6D is graphic-only on light.
+ *   Dark theme: #FFF on #000 21:1 · muted #BDBDBD on #000 11.6:1
+ */
+@layer base {
+  :root {
+    --spacing: 2rem;
+    --border-radius: 0px;
+    --shadow: none;
+    --accent-color: #b38b6d;
+
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 0%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 0%;
+    --primary: 0 0% 0%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 42 41% 94%; /* beige #F5F1E8 */
+    --secondary-foreground: 0 0% 0%;
+    --muted: 42 41% 94%;
+    --muted-foreground: 0 0% 29%; /* #4A4A4A */
+    --accent: 42 41% 94%;
+    --accent-foreground: 26 30% 32%; /* taupe-dark #6B4F3A */
+    --destructive: 0 72% 33%; /* #921717, 8.6:1 on white */
+    --destructive-foreground: 0 0% 100%;
+    --success: 0 0% 0%; /* monochrome: "good" reads through labels, not colour */
+    --success-foreground: 0 0% 100%;
+    --warning: 26 30% 32%; /* taupe-dark */
+    --warning-foreground: 0 0% 100%;
+    --border: 0 0% 85%; /* structural rules; black (border-foreground) for emphasis */
+    --input: 0 0% 0%;
+    --ring: 0 0% 0%;
+    --radius: 0px;
+    --chart-line: 0 0% 0%;
+    --chart-grid: 0 0% 88%;
+    color-scheme: light;
+  }
+
+  .dark {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 0%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 4%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 0 0% 100%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 0 0% 9%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 9%;
+    --muted-foreground: 0 0% 74%; /* #BDBDBD */
+    --accent: 0 0% 9%;
+    --accent-foreground: 26 45% 72%; /* light taupe #D9C3B0 */
+    --destructive: 0 85% 72%;
+    --destructive-foreground: 0 0% 0%;
+    --success: 0 0% 100%;
+    --success-foreground: 0 0% 0%;
+    --warning: 26 45% 72%;
+    --warning-foreground: 0 0% 0%;
+    --border: 0 0% 24%;
+    --input: 0 0% 100%;
+    --ring: 0 0% 100%;
+    --chart-line: 0 0% 100%;
+    --chart-grid: 0 0% 20%;
+    color-scheme: dark;
+  }
+
+  * {
+    @apply border-border;
+  }
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "tnum" 0;
+  }
+  a,
+  button,
+  summary,
+  [role="button"],
+  label[for],
+  select {
+    cursor: pointer;
+  }
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+  ::selection {
+    background: #000;
+    color: #fff;
+  }
+}
+
+@layer components {
+  /* Small uppercase label. */
+  .eyebrow {
+    @apply text-[11px] font-semibold uppercase tracking-eyebrow text-muted-foreground;
+  }
+  /* Swiss display type: heavy, tight, no italics. Emphasis = lighter weight, never colour or slant. */
+  .display {
+    @apply font-display font-bold leading-[0.95] tracking-tightest;
+  }
+  .display em {
+    @apply font-normal not-italic;
+  }
+  .hairline {
+    @apply h-px w-full bg-foreground;
+  }
+  /* Arrow link with underline that draws on hover. */
+  .link-arrow {
+    @apply inline-flex items-center gap-2 border-b border-current pb-0.5 text-sm font-semibold transition-all duration-200 hover:gap-3;
+  }
+  .reveal {
+    opacity: 0;
+    transform: translateY(12px);
+    transition:
+      opacity 0.6s cubic-bezier(0.2, 0.8, 0.2, 1),
+      transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .reveal[data-shown="true"] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}

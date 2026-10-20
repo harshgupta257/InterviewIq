@@ -1,0 +1,50 @@
+# Optional deployment after CI passes on main.
+# Required repository secrets (Settings > Secrets and variables > Actions):
+#   RENDER_DEPLOY_HOOK_URL  - Render service > Settings > Deploy Hook
+#   VERCEL_TOKEN            - Vercel account token
+#   VERCEL_ORG_ID, VERCEL_PROJECT_ID - from `vercel link` (.vercel/project.json)
+# If you use Render's and Vercel's native Git integrations instead, delete this workflow.
+name: Deploy
+
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  backend:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Render deploy
+        env:
+          HOOK: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+        run: |
+          if [ -z "$HOOK" ]; then echo "RENDER_DEPLOY_HOOK_URL not set; skipping."; exit 0; fi
+          curl -fsS -X POST "$HOOK" > /dev/null && echo "Render deploy triggered."
+
+  frontend:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    env:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Deploy to Vercel
+        working-directory: frontend
+        run: |
+          if [ -z "$VERCEL_TOKEN" ]; then echo "VERCEL_TOKEN not set; skipping."; exit 0; fi
+          npx --yes vercel@39.1.0 pull --yes --environment=production --token="$VERCEL_TOKEN"
+          npx --yes vercel@39.1.0 build --prod --token="$VERCEL_TOKEN"
+          npx --yes vercel@39.1.0 deploy --prebuilt --prod --token="$VERCEL_TOKEN"

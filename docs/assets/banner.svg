@@ -2,177 +2,134 @@
   <title id="t">InterviewIQ</title>
   <desc id="d">AI interview coach and resume-matched job finder</desc>
   <defs>
-    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#05010d"/>
-      <stop offset=".62" stop-color="#1a0433"/>
-      <stop offset=".76" stop-color="#3a0a4f"/>
-      <stop offset=".77" stop-color="#05010d"/>
-      <stop offset="1" stop-color="#05010d"/>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a1a33"/>
+      <stop offset="1" stop-color="#132c50"/>
     </linearGradient>
-    <linearGradient id="sun" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#f9f002"/>
-      <stop offset=".55" stop-color="#ff2a6d"/>
-      <stop offset="1" stop-color="#7b2cbf"/>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#e3c46b"/>
+      <stop offset="1" stop-color="#b8902c"/>
     </linearGradient>
-    <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#fff" stop-opacity="0"/>
-      <stop offset="1" stop-color="#fff" stop-opacity="1"/>
+    <linearGradient id="bar" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5b7fae"/>
+      <stop offset="1" stop-color="#2a4a75"/>
     </linearGradient>
-    <linearGradient id="beam" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#00f0ff" stop-opacity="0"/>
-      <stop offset=".5" stop-color="#00f0ff" stop-opacity=".09"/>
-      <stop offset="1" stop-color="#00f0ff" stop-opacity="0"/>
+    <linearGradient id="tower" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1b365d"/>
+      <stop offset="1" stop-color="#0c1d38"/>
     </linearGradient>
-    <mask id="floorMask"><rect x="0" y="322" width="1280" height="98" fill="url(#fade)"/></mask>
-    <mask id="sunMask">
-      <rect width="1280" height="420" fill="#fff"/>
-      <g fill="#000">
-        <rect x="0" y="236" width="1280" height="3"/>
-        <rect x="0" y="252" width="1280" height="4"/>
-        <rect x="0" y="268" width="1280" height="6"/>
-        <rect x="0" y="284" width="1280" height="8"/>
-        <rect x="0" y="300" width="1280" height="10"/>
-      </g>
-    </mask>
-    <pattern id="scan" width="4" height="4" patternUnits="userSpaceOnUse">
-      <rect width="4" height="1" fill="#000" opacity=".35"/>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0 H0 V40" fill="none" stroke="#ffffff" stroke-opacity=".035"/>
     </pattern>
-    <filter id="glow" x="-20%" y="-40%" width="140%" height="180%">
-      <feGaussianBlur stdDeviation="4" result="b"/>
-      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
-    <filter id="softglow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="2.2" result="b"/>
-      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
-    <clipPath id="typeClip"><rect class="type" x="80" y="196" width="0" height="40"/></clipPath>
+    <pattern id="win" width="10" height="12" patternUnits="userSpaceOnUse">
+      <rect x="2" y="3" width="5" height="6" fill="#9fb6d6" opacity=".18"/>
+    </pattern>
+    <clipPath id="tape"><rect x="0" y="382" width="1280" height="38"/></clipPath>
     <style>
-      .mono{font-family:'JetBrains Mono','Fira Code','Cascadia Code',Consolas,'Courier New',monospace}
-      .title{font-family:'Orbitron','Eurostile','Arial Black','Segoe UI Black',Impact,sans-serif;font-weight:900;letter-spacing:6px}
-      .type{animation:type 3.6s steps(46) .4s forwards}
-      @keyframes type{to{width:760px}}
-      .blink{animation:blink 1s steps(1) infinite}
-      @keyframes blink{50%{opacity:0}}
-      .gA{animation:gA 4s steps(1) infinite}
-      .gB{animation:gB 4s steps(1) infinite}
-      @keyframes gA{0%,86%,100%{opacity:0;transform:translate(0,0)}87%{opacity:.85;transform:translate(-6px,2px)}90%{opacity:.85;transform:translate(5px,-1px)}93%{opacity:.85;transform:translate(-3px,0)}95%{opacity:0}}
-      @keyframes gB{0%,86%,100%{opacity:0;transform:translate(0,0)}88%{opacity:.85;transform:translate(6px,-2px)}91%{opacity:.85;transform:translate(-4px,1px)}94%{opacity:.85;transform:translate(3px,0)}96%{opacity:0}}
-      .shake{animation:shake 4s steps(1) infinite}
-      @keyframes shake{0%,86%,100%{transform:translate(0,0)}88%{transform:translate(2px,0)}91%{transform:translate(-2px,0)}}
-      .floor{animation:floor 1.2s linear infinite}
-      @keyframes floor{from{transform:translateY(0)}to{transform:translateY(16px)}}
-      .sweep{animation:sweep 6s linear infinite}
-      @keyframes sweep{from{transform:translateY(-140px)}to{transform:translateY(440px)}}
-      .spin{transform-origin:1080px 150px;animation:spin 18s linear infinite}
-      .spinR{transform-origin:1080px 150px;animation:spin 26s linear infinite reverse}
-      @keyframes spin{to{transform:rotate(360deg)}}
-      .pulse{animation:pulse 1.6s ease-in-out infinite}
-      @keyframes pulse{50%{opacity:.25}}
-      .w1{animation:win 2.3s steps(1) infinite}
-      .w2{animation:win 3.1s steps(1) .7s infinite}
-      .w3{animation:win 4.3s steps(1) 1.3s infinite}
-      @keyframes win{0%,60%{opacity:1}61%,100%{opacity:.15}}
-      @media (prefers-reduced-motion:reduce){*{animation:none!important}.type{width:760px}}
+      .serif{font-family:Georgia,'Times New Roman',Times,serif}
+      .sans{font-family:'Helvetica Neue',Helvetica,Arial,'Segoe UI',sans-serif}
+      .mono{font-family:'SF Mono',Menlo,Consolas,'Liberation Mono',monospace}
+      .grow{transform-box:fill-box;transform-origin:bottom;animation:grow 1.4s cubic-bezier(.2,.8,.2,1) both}
+      .d1{animation-delay:.1s}.d2{animation-delay:.25s}.d3{animation-delay:.4s}.d4{animation-delay:.55s}.d5{animation-delay:.7s}.d6{animation-delay:.85s}
+      @keyframes grow{from{transform:scaleY(0)}}
+      .trend{stroke-dasharray:420;stroke-dashoffset:420;animation:draw 2s ease-out 1s forwards}
+      @keyframes draw{to{stroke-dashoffset:0}}
+      .dot{opacity:0;animation:show .3s ease-out 2.8s forwards}
+      @keyframes show{to{opacity:1}}
+      .ticker{animation:tick 36s linear infinite}
+      @keyframes tick{to{transform:translateX(-1280px)}}
+      .lit{animation:lit 5s steps(1) infinite}
+      @keyframes lit{0%,70%{opacity:1}71%,100%{opacity:.35}}
+      @media (prefers-reduced-motion:reduce){*{animation:none!important}.trend{stroke-dashoffset:0}.dot{opacity:1}}
     </style>
   </defs>
 
-  <rect width="1280" height="420" fill="url(#sky)"/>
-
-  <!-- stars -->
-  <g fill="#d1f7ff" opacity=".7">
-    <circle cx="40" cy="30" r="1"/><circle cx="210" cy="64" r="1.2"/><circle cx="380" cy="22" r=".9"/>
-    <circle cx="560" cy="48" r="1.1"/><circle cx="700" cy="18" r=".8"/><circle cx="820" cy="70" r="1"/>
-    <circle cx="930" cy="28" r="1.3"/><circle cx="1240" cy="52" r="1"/><circle cx="640" cy="110" r=".8"/>
-    <circle cx="470" cy="128" r="1"/><circle cx="1190" cy="240" r=".9"/><circle cx="760" cy="150" r="1"/>
-  </g>
-
-  <!-- synthwave sun -->
-  <circle cx="846" cy="240" r="86" fill="url(#sun)" mask="url(#sunMask)" opacity=".9" filter="url(#softglow)"/>
+  <rect width="1280" height="420" fill="url(#bg)"/>
+  <rect width="1280" height="420" fill="url(#grid)"/>
 
   <!-- skyline -->
-  <g fill="#0b0420" stroke="#ff2a6d" stroke-opacity=".35" stroke-width="1">
-    <rect x="0" y="282" width="46" height="40"/><rect x="50" y="266" width="34" height="56"/>
-    <rect x="460" y="270" width="40" height="52"/><rect x="504" y="250" width="28" height="72"/>
-    <rect x="536" y="284" width="44" height="38"/><rect x="600" y="262" width="36" height="60"/>
-    <rect x="640" y="236" width="30" height="86"/><rect x="674" y="276" width="50" height="46"/>
-    <rect x="880" y="258" width="38" height="64"/><rect x="922" y="214" width="34" height="108"/>
-    <rect x="960" y="270" width="46" height="52"/><rect x="1150" y="232" width="40" height="90"/>
-    <rect x="1194" y="262" width="36" height="60"/><rect x="1234" y="244" width="46" height="78"/>
+  <g>
+    <rect x="0" y="300" width="70" height="82" fill="url(#tower)"/>
+    <rect x="76" y="258" width="54" height="124" fill="url(#tower)"/>
+    <rect x="136" y="318" width="80" height="64" fill="url(#tower)"/>
+    <rect x="440" y="310" width="66" height="72" fill="url(#tower)"/>
+    <rect x="512" y="280" width="46" height="102" fill="url(#tower)"/>
+    <rect x="564" y="322" width="90" height="60" fill="url(#tower)"/>
+    <rect x="660" y="292" width="58" height="90" fill="url(#tower)"/>
+    <rect x="724" y="236" width="64" height="146" fill="url(#tower)"/>
+    <path d="M724 236 L756 214 L788 236 Z" fill="#1b365d"/>
+    <rect x="794" y="304" width="56" height="78" fill="url(#tower)"/>
+    <rect x="1180" y="312" width="100" height="70" fill="url(#tower)"/>
   </g>
-  <line x1="939" y1="214" x2="939" y2="190" stroke="#ff2a6d" stroke-width="1.5"/>
-  <circle class="pulse" cx="939" cy="188" r="2.5" fill="#ff2a6d"/>
-  <g fill="#00f0ff">
-    <rect class="w1" x="512" y="260" width="4" height="3"/><rect class="w2" x="520" y="276" width="4" height="3"/>
-    <rect class="w3" x="648" y="248" width="4" height="3"/><rect class="w1" x="656" y="270" width="4" height="3"/>
-    <rect class="w2" x="930" y="230" width="4" height="3"/><rect class="w3" x="940" y="252" width="4" height="3"/>
-    <rect class="w1" x="1160" y="246" width="4" height="3"/><rect class="w3" x="1244" y="258" width="4" height="3"/>
+  <g fill="url(#win)">
+    <rect x="80" y="264" width="46" height="112"/>
+    <rect x="516" y="286" width="38" height="92"/>
+    <rect x="728" y="242" width="56" height="134"/>
+    <rect x="664" y="298" width="50" height="80"/>
   </g>
-  <g fill="#f9f002">
-    <rect class="w3" x="60" y="278" width="4" height="3"/><rect class="w2" x="610" y="274" width="4" height="3"/>
-    <rect class="w1" x="1204" y="276" width="4" height="3"/><rect class="w2" x="888" y="270" width="4" height="3"/>
+  <g fill="#e3c46b">
+    <rect class="lit" x="92" y="279" width="5" height="6"/>
+    <rect class="lit" style="animation-delay:1.2s" x="742" y="267" width="5" height="6"/>
+    <rect class="lit" style="animation-delay:2.4s" x="772" y="315" width="5" height="6"/>
+    <rect class="lit" style="animation-delay:.6s" x="536" y="327" width="5" height="6"/>
   </g>
+  <line x1="0" y1="382" x2="1280" y2="382" stroke="url(#gold)" stroke-width="1.5"/>
 
-  <!-- horizon + perspective floor -->
-  <line x1="0" y1="322" x2="1280" y2="322" stroke="#ff2a6d" stroke-width="2" filter="url(#softglow)"/>
-  <g mask="url(#floorMask)" stroke="#ff2a6d" stroke-width="1.2" opacity=".85">
-    <g class="floor">
-      <line x1="0" y1="306" x2="1280" y2="306"/><line x1="0" y1="322" x2="1280" y2="322"/>
-      <line x1="0" y1="338" x2="1280" y2="338"/><line x1="0" y1="354" x2="1280" y2="354"/>
-      <line x1="0" y1="370" x2="1280" y2="370"/><line x1="0" y1="386" x2="1280" y2="386"/>
-      <line x1="0" y1="402" x2="1280" y2="402"/><line x1="0" y1="418" x2="1280" y2="418"/>
+  <!-- letterhead -->
+  <rect x="80" y="44" width="36" height="2" fill="url(#gold)"/>
+  <text x="128" y="50" class="sans" font-size="13" font-weight="600" fill="#d9b85a" letter-spacing="4">ANNUAL REPORT · FY2026</text>
+
+  <text x="76" y="156" class="serif" font-size="92" fill="#ffffff" letter-spacing="1">Interview<tspan fill="#d9b85a">IQ</tspan></text>
+  <rect x="80" y="182" width="120" height="3" fill="url(#gold)"/>
+  <text x="80" y="226" class="sans" font-size="25" fill="#dbe4f0" letter-spacing=".5">AI interview coach  ·  Resume-matched job finder</text>
+  <text x="80" y="260" class="serif" font-size="17" font-style="italic" fill="#9fb1c8">Walk into the boardroom prepared. Eight questions, one rubric, measurable progress.</text>
+
+  <!-- performance chart -->
+  <g transform="translate(900 66)">
+    <rect width="320" height="210" rx="6" fill="#ffffff" fill-opacity=".05" stroke="#2f4f7a"/>
+    <text x="20" y="30" class="sans" font-size="11" font-weight="600" fill="#9fb1c8" letter-spacing="2.5">READINESS</text>
+    <text x="300" y="30" text-anchor="end" class="sans" font-size="12" font-weight="700" fill="#5fbf8a">▲ TRENDING UP</text>
+    <g stroke="#ffffff" stroke-opacity=".08">
+      <line x1="20" y1="70" x2="300" y2="70"/><line x1="20" y1="110" x2="300" y2="110"/><line x1="20" y1="150" x2="300" y2="150"/>
     </g>
-    <g stroke="#7b2cbf">
-      <line x1="640" y1="322" x2="-600" y2="420"/><line x1="640" y1="322" x2="-200" y2="420"/>
-      <line x1="640" y1="322" x2="160" y2="420"/><line x1="640" y1="322" x2="460" y2="420"/>
-      <line x1="640" y1="322" x2="640" y2="420"/><line x1="640" y1="322" x2="820" y2="420"/>
-      <line x1="640" y1="322" x2="1120" y2="420"/><line x1="640" y1="322" x2="1480" y2="420"/>
-      <line x1="640" y1="322" x2="1880" y2="420"/>
+    <line x1="20" y1="186" x2="300" y2="186" stroke="#5b7290"/>
+    <rect class="grow d1" x="32"  y="150" width="30" height="36" fill="url(#bar)"/>
+    <rect class="grow d2" x="76"  y="134" width="30" height="52" fill="url(#bar)"/>
+    <rect class="grow d3" x="120" y="140" width="30" height="46" fill="url(#bar)"/>
+    <rect class="grow d4" x="164" y="110" width="30" height="76" fill="url(#bar)"/>
+    <rect class="grow d5" x="208" y="92"  width="30" height="94" fill="url(#bar)"/>
+    <rect class="grow d6" x="252" y="62"  width="30" height="124" fill="url(#gold)"/>
+    <polyline class="trend" points="47,138 91,122 135,128 179,98 223,80 267,50" fill="none" stroke="#e3c46b" stroke-width="2.5" stroke-linejoin="round"/>
+    <g class="dot" fill="#0a1a33" stroke="#e3c46b" stroke-width="2">
+      <circle cx="47" cy="138" r="4"/><circle cx="91" cy="122" r="4"/><circle cx="135" cy="128" r="4"/>
+      <circle cx="179" cy="98" r="4"/><circle cx="223" cy="80" r="4"/><circle cx="267" cy="50" r="4"/>
+    </g>
+    <g class="sans" font-size="10" fill="#7f93ad" text-anchor="middle">
+      <text x="47" y="202">S1</text><text x="91" y="202">S2</text><text x="135" y="202">S3</text>
+      <text x="179" y="202">S4</text><text x="223" y="202">S5</text><text x="267" y="202">S6</text>
     </g>
   </g>
 
-  <!-- HUD ring: 8 questions -->
-  <g fill="none" stroke="#00f0ff" filter="url(#softglow)">
-    <circle cx="1080" cy="150" r="78" stroke-opacity=".25"/>
-    <g class="spin"><circle cx="1080" cy="150" r="68" stroke-width="3" stroke-dasharray="40 14"/></g>
-    <g class="spinR"><circle cx="1080" cy="150" r="88" stroke="#ff2a6d" stroke-width="1.5" stroke-dasharray="4 10 60 10"/></g>
+  <!-- ticker tape -->
+  <rect x="0" y="383" width="1280" height="37" fill="#06122a"/>
+  <g clip-path="url(#tape)">
+    <g class="ticker mono" font-size="13" letter-spacing="1.5">
+      <g fill="#c9d4e3">
+        <text x="20"   y="406">IIQ.QUESTIONS <tspan fill="#5fbf8a">8 ▲</tspan></text>
+        <text x="235"  y="406">IIQ.RUBRIC <tspan fill="#5fbf8a">4-DIM ▲</tspan></text>
+        <text x="450"  y="406">IIQ.JOBMATCH <tspan fill="#5fbf8a">0–100 ▲</tspan></text>
+        <text x="685"  y="406">IIQ.TESTS <tspan fill="#5fbf8a">128 ▲</tspan></text>
+        <text x="880"  y="406">IIQ.FAKE_SCORES <tspan fill="#d9b85a">0 ━</tspan></text>
+        <text x="1095" y="406">IIQ.KEYS <tspan fill="#d9b85a">SERVER ━</tspan></text>
+      </g>
+      <g fill="#c9d4e3" transform="translate(1280 0)">
+        <text x="20"   y="406">IIQ.QUESTIONS <tspan fill="#5fbf8a">8 ▲</tspan></text>
+        <text x="235"  y="406">IIQ.RUBRIC <tspan fill="#5fbf8a">4-DIM ▲</tspan></text>
+        <text x="450"  y="406">IIQ.JOBMATCH <tspan fill="#5fbf8a">0–100 ▲</tspan></text>
+        <text x="685"  y="406">IIQ.TESTS <tspan fill="#5fbf8a">128 ▲</tspan></text>
+        <text x="880"  y="406">IIQ.FAKE_SCORES <tspan fill="#d9b85a">0 ━</tspan></text>
+        <text x="1095" y="406">IIQ.KEYS <tspan fill="#d9b85a">SERVER ━</tspan></text>
+      </g>
+    </g>
   </g>
-  <rect x="1032" y="118" width="96" height="64" fill="#05010d" opacity=".85"/>
-  <text x="1080" y="166" text-anchor="middle" class="title" font-size="46" fill="#f9f002" filter="url(#softglow)" letter-spacing="2">08</text>
-  <text x="1080" y="196" text-anchor="middle" class="mono" font-size="11" fill="#00f0ff" letter-spacing="3">QUESTIONS</text>
-
-  <!-- HUD frame -->
-  <g fill="none" stroke="#00f0ff" stroke-width="2">
-    <path d="M24 44 V24 H64"/><path d="M1216 24 H1256 V44"/>
-    <path d="M24 376 V396 H64"/><path d="M1256 376 V396 H1216"/>
-  </g>
-  <text x="80" y="42" class="mono" font-size="13" fill="#ff2a6d" letter-spacing="2">// NEURAL_INTERVIEW_SYS · BUILD 2026</text>
-  <circle class="pulse" cx="1110" cy="38" r="5" fill="#39ff14"/>
-  <text x="1122" y="42" class="mono" font-size="13" fill="#39ff14" letter-spacing="2">ONLINE</text>
-
-  <!-- title with glitch -->
-  <g class="shake">
-    <text x="76" y="150" class="title gA" font-size="92" fill="#00f0ff">INTERVIEWIQ</text>
-    <text x="76" y="150" class="title gB" font-size="92" fill="#ff2a6d">INTERVIEWIQ</text>
-    <text x="76" y="150" class="title" font-size="92" fill="#f5f0ff" filter="url(#glow)">INTERVIEW<tspan fill="#ff2a6d">IQ</tspan></text>
-  </g>
-
-  <!-- typed subtitle -->
-  <g clip-path="url(#typeClip)">
-    <text x="80" y="224" class="mono" font-size="22" fill="#00f0ff" filter="url(#softglow)">&gt; ai interview coach // resume-matched job finder</text>
-  </g>
-  <text x="80" y="262" class="mono" font-size="15" fill="#d1f7ff" opacity=".75">&gt; jack in. answer 8. get scored. fix one thing.<tspan class="blink" fill="#f9f002"> █</tspan></text>
-
-  <!-- tags -->
-  <g class="mono" font-size="12" letter-spacing="2">
-    <rect x="80" y="352" width="168" height="26" fill="#05010d" stroke="#ff2a6d"/>
-    <text x="164" y="369" text-anchor="middle" fill="#ff2a6d">4-DIM RUBRIC</text>
-    <rect x="258" y="352" width="196" height="26" fill="#05010d" stroke="#00f0ff"/>
-    <text x="356" y="369" text-anchor="middle" fill="#00f0ff">JOB MATCH 0-100</text>
-    <rect x="464" y="352" width="210" height="26" fill="#05010d" stroke="#f9f002"/>
-    <text x="569" y="369" text-anchor="middle" fill="#f9f002">ZERO FAKE SCORES</text>
-  </g>
-
-  <!-- CRT overlay -->
-  <rect width="1280" height="420" fill="url(#scan)"/>
-  <rect class="sweep" x="0" y="0" width="1280" height="120" fill="url(#beam)"/>
 </svg>

@@ -7,32 +7,37 @@
 <br>
 
 [![CI](https://github.com/harshgupta257/InterviewIq/actions/workflows/ci.yml/badge.svg)](https://github.com/harshgupta257/InterviewIq/actions/workflows/ci.yml)
-![React](https://img.shields.io/badge/React_18-0d0221?style=for-the-badge&logo=react&logoColor=00f0ff)
-![TypeScript](https://img.shields.io/badge/TypeScript-0d0221?style=for-the-badge&logo=typescript&logoColor=00f0ff)
-![FastAPI](https://img.shields.io/badge/FastAPI-0d0221?style=for-the-badge&logo=fastapi&logoColor=39ff14)
-![Python](https://img.shields.io/badge/Python_3.12-0d0221?style=for-the-badge&logo=python&logoColor=f9f002)
-![Supabase](https://img.shields.io/badge/Supabase-0d0221?style=for-the-badge&logo=supabase&logoColor=39ff14)
-![Gemini](https://img.shields.io/badge/Gemini-0d0221?style=for-the-badge&logo=googlegemini&logoColor=ff2a6d)
-![Render](https://img.shields.io/badge/Render-0d0221?style=for-the-badge&logo=render&logoColor=f5f0ff)
+![React](https://img.shields.io/badge/React_18-0b1f3a?style=for-the-badge&logo=react&logoColor=d9b85a)
+![TypeScript](https://img.shields.io/badge/TypeScript-0b1f3a?style=for-the-badge&logo=typescript&logoColor=d9b85a)
+![FastAPI](https://img.shields.io/badge/FastAPI-0b1f3a?style=for-the-badge&logo=fastapi&logoColor=d9b85a)
+![Python](https://img.shields.io/badge/Python_3.12-0b1f3a?style=for-the-badge&logo=python&logoColor=d9b85a)
+![Supabase](https://img.shields.io/badge/Supabase-0b1f3a?style=for-the-badge&logo=supabase&logoColor=d9b85a)
+![Gemini](https://img.shields.io/badge/Gemini-0b1f3a?style=for-the-badge&logo=googlegemini&logoColor=d9b85a)
+![Render](https://img.shields.io/badge/Render-0b1f3a?style=for-the-badge&logo=render&logoColor=d9b85a)
 
-**[`◆ FEATURES`](#features)** &nbsp;
-**[`◆ JOB FINDER`](#job-finder)** &nbsp;
-**[`◆ ARCHITECTURE`](#architecture)** &nbsp;
-**[`◆ QUICK START`](#quick-start)** &nbsp;
-**[`◆ DEPLOY`](#deploy)** &nbsp;
-**[`◆ TESTS`](#tests)** &nbsp;
-**[`◆ API`](docs/API.md)**
+**[Portfolio](#features)** &nbsp;|&nbsp;
+**[Talent Acquisition](#job-finder)** &nbsp;|&nbsp;
+**[Org Structure](#architecture)** &nbsp;|&nbsp;
+**[Onboarding](#quick-start)** &nbsp;|&nbsp;
+**[Go-to-Market](#deploy)** &nbsp;|&nbsp;
+**[Audit & Compliance](#tests)** &nbsp;|&nbsp;
+**[API](docs/API.md)**
 
 </div>
 
-```console
-$ interviewiq --boot
-[ OK ] resume + job description ......... parsed
-[ OK ] interview ......................... 8 questions generated, grounded in your experience
-[ OK ] rubric ............................ clarity · specificity · result orientation · relevance
-[ OK ] score ............................. computed by the backend, never by the model
-[ OK ] job finder ........................ real listings, scored 0–100 against your resume
-[ -- ] fabricated results ................ none. failures say so, and you can retry.
+```text
+MEMORANDUM
+──────────────────────────────────────────────────────────────────────────────
+TO:       Candidates preparing for their next interview loop
+FROM:     InterviewIQ
+RE:       Interview readiness: deliverables and commitments
+──────────────────────────────────────────────────────────────────────────────
+  ✔  Intake          resume + job description parsed
+  ✔  Agenda          8 questions generated, grounded in your experience
+  ✔  Review rubric   clarity · specificity · result orientation · relevance
+  ✔  Scoring         computed by the backend, never by the model
+  ✔  Placement       real listings, scored 0–100 against your resume
+  ✖  Fabrication     none. Failures are disclosed, and you can retry.
 ```
 
 InterviewIQ turns a resume and a target job description into a tailored mock interview.
@@ -47,13 +52,13 @@ interview in one click.
 
 <a id="features"></a>
 
-## `⟨01⟩` SYSTEM MODULES
+## 01 &nbsp;·&nbsp; Product Portfolio
 
 <table>
 <tr>
 <td width="50%" valign="top">
 
-### ▸ Tailored sessions
+### ■ Tailored sessions
 Resume + JD analysis, then **exactly 8** questions: 2 technical, 2 project deep-dive,
 2 behavioral, 1 system design *or* case study, 1 motivation. Every question is schema
 validated, with a bounded repair-retry loop.
@@ -61,7 +66,7 @@ validated, with a bounded repair-retry loop.
 </td>
 <td width="50%" valign="top">
 
-### ▸ Rubric evaluation
+### ■ Rubric evaluation
 Four integer scores (1–5), each with a reason, plus overall feedback and *the one
 thing to fix*. The percentage is `avg / 5 × 100`, **computed by the backend** and
 never taken from the model.
@@ -71,7 +76,7 @@ never taken from the model.
 <tr>
 <td valign="top">
 
-### ▸ Interview workspace
+### ■ Interview workspace
 One question at a time, answered in order. Drafts autosave locally. Progress is
 restored from the database on refresh, and duplicate submits and multiple open tabs
 are handled safely.
@@ -79,7 +84,7 @@ are handled safely.
 </td>
 <td valign="top">
 
-### ▸ Stronger answer
+### ■ Stronger answer
 A STAR-shaped example (behavioral questions only), *What changed*, missing details
 shown as `[placeholders]`, and a likely follow-up. It's saved and reused unless you
 regenerate it.
@@ -89,14 +94,14 @@ regenerate it.
 <tr>
 <td valign="top">
 
-### ▸ AI Job Finder
+### ■ AI Job Finder
 Upload a PDF/DOCX resume, set roles, location and preferences, and get **real
 listings** with a 0–100 match score. Then **Prepare for interview** on any of them.
 
 </td>
 <td valign="top">
 
-### ▸ Dashboard + history
+### ■ Dashboard + history
 Real aggregates, a score-trend chart (with a table view) and rubric averages. History
 has search, role filter, sort, pagination, and delete with confirmation.
 
@@ -105,7 +110,7 @@ has search, role filter, sort, pagination, and delete with confirmation.
 </table>
 
 <details>
-<summary><b>▸ More modules: auth, failure handling, settings, demo mode</b></summary>
+<summary><b>■ Further offerings: auth, failure handling, settings, demo mode</b></summary>
 <br>
 
 - **Auth:** Supabase email/password sign-up, login, logout, password reset and protected routes. The backend verifies every JWT, via JWKS signing keys or the legacy HS256 secret.
@@ -116,7 +121,7 @@ has search, role filter, sort, pagination, and delete with confirmation.
 
 </details>
 
-### ▸ Screens
+### ■ Product walkthrough
 
 <table>
 <tr>
@@ -151,7 +156,7 @@ has search, role filter, sort, pagination, and delete with confirmation.
 
 <a id="job-finder"></a>
 
-## `⟨02⟩` AI JOB FINDER
+## 02 &nbsp;·&nbsp; Talent Acquisition: AI Job Finder
 
 `/jobs` (sidebar: **Job finder**). Upload a resume (PDF/DOCX, or paste / reuse your latest).
 Set target roles, location, level, work arrangement and employment type, and see real
@@ -159,12 +164,12 @@ listings scored against your resume. **Prepare for interview** sends a listing (
 full description you paste, if the listing only has a summary) into the interview engine.
 
 ```mermaid
-%%{init: {'theme':'base','themeVariables':{'background':'#05010d','primaryColor':'#0d0221','primaryTextColor':'#f5f0ff','primaryBorderColor':'#00f0ff','lineColor':'#ff2a6d','secondaryColor':'#0d0221','tertiaryColor':'#0d0221','edgeLabelBackground':'#0d0221','clusterBkg':'#05010d','clusterBorder':'#7b2cbf','titleColor':'#f9f002','fontFamily':'monospace'}}}%%
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#0b1f3a','primaryTextColor':'#ffffff','primaryBorderColor':'#c9a227','lineColor':'#c9a227','secondaryColor':'#2a4a75','tertiaryColor':'#f4f6f9','textColor':'#0b1f3a','edgeLabelBackground':'#f4f6f9','clusterBkg':'#f4f6f9','clusterBorder':'#8a9ab0','titleColor':'#0b1f3a','fontFamily':'Helvetica, Arial, sans-serif'}}}%%
 flowchart LR
-    R[/"Resume"/] -- "contacts redacted" --> P["01 · ANALYSE<br>skills-only profile"]
-    P -- "keywords + location" --> S["02 · DISCOVER<br>Adzuna listings"]
-    S --> M["03 · EVALUATE<br>score 0–100"]
-    M --> I(["PREPARE<br>8-question interview"])
+    R[/"Resume"/] -- "contacts redacted" --> P["01 · Screening<br>skills-only profile"]
+    P -- "keywords + location" --> S["02 · Sourcing<br>Adzuna listings"]
+    S --> M["03 · Assessment<br>score 0–100"]
+    M --> I(["Interview prep<br>8-question session"])
 ```
 
 | Stage | What runs | Data sent out |
@@ -174,7 +179,7 @@ flowchart LR
 | `03` Evaluate matches | One batched Gemini call; score computed in code | Profile + redacted resume + listing text |
 
 <details>
-<summary><b>▸ How the 0–100 score is computed</b></summary>
+<summary><b>■ How the 0–100 score is computed</b></summary>
 <br>
 
 ```text
@@ -193,7 +198,7 @@ score = 100 × ( 0.40 · skill_coverage      ← computed from evidence in your 
 </details>
 
 <details>
-<summary><b>▸ Why Adzuna instead of Gemini Google Search grounding</b></summary>
+<summary><b>■ Why Adzuna instead of Gemini Google Search grounding</b></summary>
 <br>
 
 The Gemini API terms for grounding forbid analysing, caching, altering or mixing other
@@ -208,7 +213,7 @@ job-search API with a free developer tier.
 </details>
 
 <details>
-<summary><b>▸ Honesty rules and storage</b></summary>
+<summary><b>■ Honesty rules and storage</b></summary>
 <br>
 
 - Only listings returned by the provider are shown, and none are ever generated.
@@ -227,10 +232,10 @@ job-search API with a free developer tier.
 
 <a id="architecture"></a>
 
-## `⟨03⟩` ARCHITECTURE
+## 03 &nbsp;·&nbsp; Organisational Structure
 
 ```mermaid
-%%{init: {'theme':'base','themeVariables':{'background':'#05010d','primaryColor':'#0d0221','primaryTextColor':'#f5f0ff','primaryBorderColor':'#ff2a6d','lineColor':'#00f0ff','secondaryColor':'#0d0221','tertiaryColor':'#0d0221','edgeLabelBackground':'#0d0221','clusterBkg':'#05010d','clusterBorder':'#7b2cbf','titleColor':'#f9f002','fontFamily':'monospace'}}}%%
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#0b1f3a','primaryTextColor':'#ffffff','primaryBorderColor':'#c9a227','lineColor':'#c9a227','secondaryColor':'#2a4a75','tertiaryColor':'#f4f6f9','textColor':'#0b1f3a','edgeLabelBackground':'#f4f6f9','clusterBkg':'#f4f6f9','clusterBorder':'#8a9ab0','titleColor':'#0b1f3a','fontFamily':'Helvetica, Arial, sans-serif'}}}%%
 flowchart LR
     subgraph Browser
         W["React + Vite SPA<br>Render static site"]
@@ -262,7 +267,7 @@ flowchart LR
 | Jobs | Provider interface + Adzuna adapter, normalisation, deterministic scoring | `app/jobs/` |
 
 <details>
-<summary><b>▸ Backend source map</b></summary>
+<summary><b>■ Backend source map</b></summary>
 
 ```text
 backend/app
@@ -286,7 +291,7 @@ backend/app
 </details>
 
 <details>
-<summary><b>▸ Key design decisions</b></summary>
+<summary><b>■ Key design decisions</b></summary>
 <br>
 
 - **The backend owns all data access.**
@@ -315,14 +320,14 @@ backend/app
 
 <a id="quick-start"></a>
 
-## `⟨04⟩` BOOT SEQUENCE
+## 04 &nbsp;·&nbsp; Onboarding
 
 > [!TIP]
 > **No credentials needed.** Demo mode runs on SQLite with an offline heuristic in place of the AI.
 > Prerequisites: Python 3.12+ and Node 20+.
 
 <details open>
-<summary><b>▸ Windows: one command</b></summary>
+<summary><b>■ Windows: one command</b></summary>
 <br>
 
 ```powershell
@@ -332,7 +337,7 @@ powershell -ExecutionPolicy Bypass -File .\start-dev.ps1
 </details>
 
 <details>
-<summary><b>▸ Manual: macOS / Linux / Windows</b></summary>
+<summary><b>■ Manual: macOS / Linux / Windows</b></summary>
 <br>
 
 ```bash
@@ -362,7 +367,7 @@ To get real AI feedback while still using demo login, set `AI_PROVIDER=gemini` a
 `GEMINI_API_KEY=…` (or `openai` / `OPENAI_API_KEY`) in `backend/.env` and restart.
 
 <details>
-<summary><b>▸ Full local setup: Supabase + real AI</b></summary>
+<summary><b>■ Full local setup: Supabase + real AI</b></summary>
 <br>
 
 1. **Create a Supabase project** at supabase.com.
@@ -395,7 +400,7 @@ To get real AI feedback while still using demo login, set `AI_PROVIDER=gemini` a
 </details>
 
 <details>
-<summary><b>▸ Environment variables</b></summary>
+<summary><b>■ Environment variables</b></summary>
 <br>
 
 | Variable | Where | Required | Purpose |
@@ -428,7 +433,7 @@ Postgres.
 
 <a id="deploy"></a>
 
-## `⟨05⟩` DEPLOY TO THE GRID
+## 05 &nbsp;·&nbsp; Go-to-Market
 
 [`render.yaml`](render.yaml) is a Render Blueprint that creates both services:
 
@@ -451,7 +456,7 @@ Postgres.
 
 <a id="tests"></a>
 
-## `⟨06⟩` DIAGNOSTICS
+## 06 &nbsp;·&nbsp; Audit & Compliance
 
 ```bash
 cd backend
@@ -469,7 +474,7 @@ It also applies the SQL migrations, runs the RLS isolation test, builds the fron
 builds the Docker image.
 
 <details>
-<summary><b>▸ What the backend tests cover</b></summary>
+<summary><b>■ What the backend tests cover</b></summary>
 <br>
 
 - Request validation, question-schema and count validation, invalid categories and distribution.
@@ -486,7 +491,7 @@ builds the Docker image.
 </details>
 
 <details>
-<summary><b>▸ Demo mode</b></summary>
+<summary><b>■ Demo mode</b></summary>
 <br>
 
 - `DEMO_MODE=true` adds **Explore the demo** to the login page. Each visitor gets an isolated account (random UUID, 12-hour token) seeded with three fictional sessions, badged **Demo** in the UI.
@@ -497,7 +502,7 @@ builds the Docker image.
 </details>
 
 <details>
-<summary><b>▸ Evaluator quality</b></summary>
+<summary><b>■ Evaluator quality</b></summary>
 <br>
 
 `backend/evals/` contains 30 synthetic answers (10 questions × weak/medium/strong) and an
@@ -509,7 +514,7 @@ least 30 items are human-labelled. See [backend/evals/README.md](backend/evals/R
 </details>
 
 <details>
-<summary><b>▸ Known limitations</b></summary>
+<summary><b>■ Known limitations</b></summary>
 <br>
 
 - **Verified against live services:**
@@ -529,7 +534,7 @@ least 30 items are human-labelled. See [backend/evals/README.md](backend/evals/R
 </details>
 
 <details>
-<summary><b>▸ Requires credentials or manual configuration</b></summary>
+<summary><b>■ Requires credentials or manual configuration</b></summary>
 <br>
 
 - Supabase project, migrations, Auth URL configuration and email templates/SMTP (email confirmation and password reset).
@@ -553,6 +558,6 @@ least 30 items are human-labelled. See [backend/evals/README.md](backend/evals/R
 
 <br>
 
-<code>// end of transmission</code> &nbsp; · &nbsp; built by <a href="https://github.com/harshgupta257">Harsh Gupta</a> &nbsp; · &nbsp; <a href="#top">▲ back to top</a>
+<sub>Prepared by</sub> <a href="https://github.com/harshgupta257">Harsh Gupta</a> &nbsp; · &nbsp; <sub>all figures audited by 128 automated tests</sub> &nbsp; · &nbsp; <a href="#top">▲ back to top</a>
 
 </div>

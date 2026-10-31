@@ -14,6 +14,9 @@
 ![Supabase](https://img.shields.io/badge/Supabase-0b1f3a?style=for-the-badge&logo=supabase&logoColor=d9b85a)
 ![Gemini](https://img.shields.io/badge/Gemini-0b1f3a?style=for-the-badge&logo=googlegemini&logoColor=d9b85a)
 ![Render](https://img.shields.io/badge/Render-0b1f3a?style=for-the-badge&logo=render&logoColor=d9b85a)
+![Vercel](https://img.shields.io/badge/Vercel-0b1f3a?style=for-the-badge&logo=vercel&logoColor=d9b85a)
+
+<a href="https://interviewiq-pink.vercel.app"><img src="https://img.shields.io/badge/%E2%96%B6_Open_the_live_app-interviewiq--pink.vercel.app-d9b85a?style=for-the-badge&labelColor=0b1f3a" alt="Open the live app"></a>
 
 **[Portfolio](#features)** &nbsp;|&nbsp;
 **[Talent Acquisition](#job-finder)** &nbsp;|&nbsp;
@@ -435,17 +438,22 @@ Postgres.
 
 ## 05 &nbsp;·&nbsp; Go-to-Market
 
-[`render.yaml`](render.yaml) is a Render Blueprint that creates both services:
+**In production now:**
 
-| Service | Type | Source |
-|---|---|---|
-| `interviewiq-api` | Docker web service | `backend/` |
-| `interviewiq-web` | Static site with SPA rewrites and security headers | `frontend/` |
+| Layer | Host | URL | Source |
+|---|---|---|---|
+| Web app | Vercel | **[interviewiq-pink.vercel.app](https://interviewiq-pink.vercel.app)** | `frontend/` ([`vercel.json`](frontend/vercel.json)) |
+| API | Render (Docker) | [interviewiq-api-98cw.onrender.com/health](https://interviewiq-api-98cw.onrender.com/health) | `backend/` ([`render.yaml`](render.yaml)) |
+| Database + Auth | Supabase | Postgres with RLS, Supabase Auth | `supabase/migrations` |
 
-1. Render dashboard → **New → Blueprint** → select this repo.
-2. Fill in the values Render asks for. The API's secrets stay on the API; the website gets only public `VITE_` values.
-3. Set `FRONTEND_ORIGIN` to the website URL and `VITE_API_BASE_URL` to the API URL.
-4. In Supabase → Authentication → URL Configuration, set the Site URL to the website and add its `/login` and `/reset-password` as redirect URLs.
+Every push to `main` redeploys both: Vercel builds the web app from `frontend/`, and Render rebuilds the API image.
+
+**To deploy your own copy:**
+
+1. **API on Render:** dashboard → **New → Blueprint** → select this repo, then fill in the secrets it asks for (`DATABASE_URL`, Supabase keys, `GEMINI_API_KEY`, Adzuna keys). The Blueprint also defines an optional `interviewiq-web` static site; skip it if you host the frontend on Vercel.
+2. **Web app on Vercel:** import the repo, set **Root Directory** to `frontend`, and add the three public values `VITE_API_BASE_URL` (the Render API URL), `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`.
+3. **Connect them:** set `FRONTEND_ORIGIN` on the API to the Vercel URL (comma-separate several origins). The API refuses to start in production with a localhost origin.
+4. **Supabase Auth:** under Authentication → URL Configuration, set the Site URL to the web app and add its `/login` and `/reset-password` as redirect URLs.
 
 > [!IMPORTANT]
 > Never put `DATABASE_URL`, the service-role key or AI keys in a `VITE_` variable: those
@@ -520,7 +528,7 @@ least 30 items are human-labelled. See [backend/evals/README.md](backend/evals/R
 - **Verified against live services:**
   - Gemini (question generation, evaluation, resume profile and job matching).
   - A hosted Supabase project.
-- **Live Adzuna search has not been tested yet:** the adapter is tested against a mocked API.
+  - Live Adzuna job search (real listings, link checks and match scoring).
 - **Rate limiting is per process** and kept in memory. With several instances, move it to Redis.
 - **Synchronous AI calls:** generation and evaluation run inside the HTTP request, which takes 10–40 s for generation. A job queue would be the next step at scale.
 - **Demo heuristic scores** measure only text statistics; they aren't meaningful feedback.
@@ -541,7 +549,7 @@ least 30 items are human-labelled. See [backend/evals/README.md](backend/evals/R
 - A Gemini or OpenAI API key for real question generation, evaluation and rewriting.
 - Adzuna `app_id` / `app_key` for live job search.
 - `SUPABASE_SERVICE_ROLE_KEY` so account deletion also removes the auth user. Without it, the app deletes all data and tells the user that an admin must remove the login.
-- Render services (via the Blueprint).
+- Render (API, via the Blueprint) and Vercel (web app) projects.
 - Human labels for the evaluation dataset.
 
 </details>
